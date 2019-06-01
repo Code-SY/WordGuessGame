@@ -1,13 +1,11 @@
-
-
 #header {
     display: flex;
     width: 100%;
     height: 100px;
-    /*margin: 2px 2px;*/
     align-items: center;
 }
-#header > p {
+
+#header>p {
     font-size: 3em;
     color: blue;
 }
@@ -16,7 +14,7 @@
     display: flex;
     min-height: 450px;
     width: 100%;
-    align-self: space-around;    
+    align-self: space-around;
 }
 
 #left {
@@ -26,6 +24,7 @@
     display: flex;
     flex-direction: column;
 }
+
 .label {
     width: 100%;
     height: 20px;
@@ -34,6 +33,7 @@
     align-items: center;
     background-color: lightblue;
 }
+
 #word {
     width: 100%;
     height: 120px;
@@ -44,6 +44,7 @@
     font-family: 'Courier New', Courier, monospace;
     letter-spacing: 5px;
 }
+
 #help {
     width: 100%;
     height: 30px;
@@ -53,6 +54,7 @@
     font-weight: bold;
     font-size: 1.2em;
 }
+
 #wrongLetters {
     width: 100%;
     height: 100px;
@@ -62,10 +64,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
-#stats {
 
-}
 #winsCount {
     width: 100%;
     height: 30px;
@@ -74,6 +75,7 @@
     align-items: center;
     font-size: 2em;
 }
+
 #guessesRemainingCount {
     width: 100%;
     height: 30px;
@@ -93,15 +95,16 @@
 }
 
 #mainFrame {
-    position: relative;;
+    position: relative;
+    ;
     width: 300px;
     height: 400px;
     background-image: url("../images/mainFrame.jpeg");
     background-repeat: round;
 }
+
 #picFrame {
     position: absolute;
     top: 80px;
     left: 60px;
-
 }

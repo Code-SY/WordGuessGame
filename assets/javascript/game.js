@@ -4,15 +4,33 @@ var words = [
         desc: "Fruit"
     },
     {
+        word: "ford",
+        desc: "Car maker"
+    },
+    {
+        word: "orange",
+        desc: "Fruit"
+    },
+    {
         word: "toyota",
         desc: "Car maker"
+    },
+    {
+        word: "apricot",
+        desc: "Fruit"
+    },
+    {
+        word: "ferrari",
+        desc: "Car maker"
     }
+    
 ];
 
 var imagesBasePath = "assets/images/";
 
 var game = {
     winsCount: 0,
+    lossesCount: 0,
     guessesRemainingCount: 8,
     guessesCount: 8,
     word: "",
@@ -20,6 +38,9 @@ var game = {
     dummy: "",
     wordLettersCount: 0,
     wrongLetters: [],
+
+    isWin: false,
+    isLost: false,
     
     helpElement: null,
     wordElement: null,
@@ -32,6 +53,7 @@ var game = {
         var me = this;
 
         me.winsCount = 0;
+        me.lossesCount = 0;
 
         me.helpElement = document.getElementById("help");
         me.wordElement = document.getElementById("word");
@@ -49,6 +71,8 @@ var game = {
         me.dummy = "";
         me.wordLettersCount = 0;
         me.wrongLetters = [];
+        me.isWin = false;
+        me.isLost = false;
     },
 
     startNew: function(newWord, newDesc) {
@@ -106,16 +130,19 @@ var game = {
             me.guessesRemainingCount--;
         }
         
-        var isLost = (guessesRemainingCount <= 0);
-        var isWin = (me.word === me.dummy);
+        me.isLost = (me.guessesRemainingCount <= 0);
+        me.isWin = (me.word === me.dummy);
 
-        if (isWin) {
+        if (me.isWin) {
             me.winsCount++;
+        }
+        if (me.isLost) {
+            me.lossesCount++;
         }
 
         me.update();
 
-        if (isWin || isLost) {
+        if (me.isWin || me.isLost) {
             return true;
         }
         return false;
@@ -127,7 +154,8 @@ var game = {
         me.helpElement.innerHTML = me.desc;
         me.wordElement.innerHTML = me.dummy;
         me.wrongLettersElement.innerHTML = me.wrongLetters.join(",");
-        me.winsCountElement.innerHTML = me.winsCount;
+        me.wrongLettersElement.style.backgroundColor = "white";
+        me.winsCountElement.innerHTML = me.winsCount + "&nbsp; / &nbsp;" + me.lossesCount;
         me.guessesRemainingElement.innerHTML = me.guessesRemainingCount;
 
         if (me.guessesRemainingCount === me.guessesCount) {
@@ -137,6 +165,15 @@ var game = {
             var imageUrl = imagesBasePath + "pic" + (me.guessesCount - me.guessesRemainingCount) + ".jpeg";
             me.imageElement.src = imageUrl;
         }
+
+        if (me.isWin) {
+            me.wrongLettersElement.innerHTML = "<div>You won!</div><br><div style='font-size: 0.5em;'>Please press space bar to continue.</div>";
+            me.wrongLettersElement.style.backgroundColor = "lightgreen";
+        }
+        if (me.isLost) {
+            me.wrongLettersElement.innerHTML = "You lost!<br><p style='font-size: 0.5em;'>Please press space bar to continue.</p>";
+            me.wrongLettersElement.style.backgroundColor = "pink";
+        }
     }
 };
 
@@ -144,9 +181,9 @@ var currentWordIndex = 0;
 var isDoneWithCurrentWord = false;
 
 var init = function() {
-    currentWordIndex = 0;
+    currentWordIndex = getRandomIndex();
     isDoneWithCurrentWord = false;
-    
+
     game.init();
     game.startNew(words[currentWordIndex].word, words[currentWordIndex].desc);
     currentWordIndex++;
@@ -160,7 +197,7 @@ document.onkeyup = function(event) {
     if (isDoneWithCurrentWord === true) {
         if (key === " " && currentWordIndex < words.length) {
             game.startNew(words[currentWordIndex].word, words[currentWordIndex].desc);
-            currentWordIndex++;
+            currentWordIndex = getRandomIndex();
             isDoneWithCurrentWord = false;
         }
         return;
@@ -174,6 +211,6 @@ document.onkeyup = function(event) {
     isDoneWithCurrentWord = game.guessLetter(key);
 };
 
-onResetClick = function() {
-    init();
-}
+function getRandomIndex() {
+    return Math.floor(Math.random() * (words.length - 1 - 0) ) + 0;
+  }
