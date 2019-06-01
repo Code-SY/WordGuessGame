@@ -11,23 +11,34 @@
 </head>
 <body>
     <div id="header">
-        <p>Word Guess Game</p>
+        <p>Word Guess Game</p>&nbsp;&nbsp;
+        <span><button onclick="onResetClick()">Reset</button></span>
     </div>
-    <div id="main">
+    <div id="main" class="container-fluid">
         <div id="left">
+            <div id="help" class="label">
+                Fruit
+            </div>
             <div id="word">
-                
+            </div>
+            <div class="label">
+                Used letters:
             </div>
             <div id="wrongLetters">
-                
             </div>
             <div id="stats">
-                <div>Wins:<span id="winsCount">0</span></div>
-                <div>Gueses remaining:<span id="guessesRemainingCount">10</span></div>
+                <p class="label">Wins:</p>
+                <p id="winsCount">0</p>
+                <p class="label">Guesses remaining:</p>
+                <p id="guessesRemainingCount">10</p>
             </div>
         </div>
         <div id="right">
-
+            <div id="mainFrame">
+                <div id="picFrame">
+                    <img id="picture" src="assets/images/picClear.jpeg" width="150" height="250">
+                </div>
+            </div>
         </div>
 
     </div>
