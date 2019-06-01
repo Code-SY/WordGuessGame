@@ -211,6 +211,10 @@ document.onkeyup = function(event) {
     isDoneWithCurrentWord = game.guessLetter(key);
 };
 
+function onResetClick() {
+    init();
+}
+
 function getRandomIndex() {
     return Math.floor(Math.random() * (words.length - 1 - 0) ) + 0;
-  }
+}
