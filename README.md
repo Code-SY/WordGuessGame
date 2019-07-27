@@ -21,7 +21,6 @@ I guess it is version 1.0.0.
 ## Tools, Technologies, Languages
 I have built this game with plain html, css and javascript. I have used VS Code.
 
-## Contributor / Developer
-Sveta Yanina is the sole developer :-)
+
 
 

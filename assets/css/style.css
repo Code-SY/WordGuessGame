@@ -4,10 +4,13 @@
     height: 100px;
     align-items: center;
 }
-
+button {
+    background-color: rgb(8, 8, 138);
+    color: white;
+}
 #header>p {
     font-size: 3em;
-    color: blue;
+    color: rgb(8, 8, 134);
 }
 
 #main {
@@ -31,7 +34,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightblue;
+    background-color: rgba(173, 216, 230, 0.521);
 }
 
 #word {
